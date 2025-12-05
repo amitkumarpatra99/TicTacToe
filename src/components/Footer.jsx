@@ -2,13 +2,7 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <footer style={{
-            marginTop: '40px',
-            textAlign: 'center',
-            color: 'var(--text-muted)',
-            fontSize: '0.8rem',
-            opacity: 0.7
-        }}>
+        <footer className="mt-8 text-center text-gray-500 text-xs font-medium tracking-wide opacity-60 hover:opacity-100 transition-opacity">
             <p>&copy; {new Date().getFullYear()} MR PATRA all rights reserved</p>
         </footer>
     );
