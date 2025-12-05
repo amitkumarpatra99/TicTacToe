@@ -9,7 +9,7 @@ const Footer = () => {
             fontSize: '0.8rem',
             opacity: 0.7
         }}>
-            <p>&copy; {new Date().getFullYear()} Tic Tac Toe Reimagined. Built with React & Vite.</p>
+            <p>&copy; {new Date().getFullYear()} MR PATRA all rights reserved</p>
         </footer>
     );
 };
