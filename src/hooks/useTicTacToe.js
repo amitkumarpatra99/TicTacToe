@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import toast from 'react-hot-toast';
 
 const WIN_LINES = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
@@ -42,7 +43,8 @@ const useTicTacToe = (sound) => {
     const [human, setHuman] = useState('X');
     const [ai, setAi] = useState('O');
     const [turn, setTurn] = useState('X');
-    const [history, setHistory] = useState([]);
+    const [history, setHistory] = useState([]); // Move history for undo
+    const [matchHistory, setMatchHistory] = useState([]); // Game result history
     const [scores, setScores] = useState({ h: 0, a: 0, t: 0 });
     const [gameOver, setGameOver] = useState(false);
     const [winData, setWinData] = useState(null);
@@ -67,6 +69,14 @@ const useTicTacToe = (sound) => {
         }
     }, [human]);
 
+    const addToMatchHistory = useCallback((result, message) => {
+        setMatchHistory(prev => [{
+            id: Date.now(),
+            result,
+            message
+        }, ...prev]);
+    }, []);
+
     const handleWin = useCallback((winner, line) => {
         setGameOver(true);
         setWinData({ winner, line });
@@ -76,13 +86,17 @@ const useTicTacToe = (sound) => {
             setStatusColor("var(--success)");
             setScores(s => ({ ...s, h: s.h + 1 }));
             sound.playWin();
+            toast.success('Victory! Well played!', { icon: '🏆', style: { borderRadius: '10px', background: '#333', color: '#fff' } });
+            addToMatchHistory('win', 'You Won!');
         } else {
             setStatus("DEFEAT");
             setStatusColor("var(--secondary)");
             setScores(s => ({ ...s, a: s.a + 1 }));
             sound.playLose();
+            toast.error('Defeat! Better luck next time.', { icon: '💀', style: { borderRadius: '10px', background: '#333', color: '#fff' } });
+            addToMatchHistory('loss', 'AI Won');
         }
-    }, [human, sound]);
+    }, [human, sound, addToMatchHistory]);
 
     const handleDraw = useCallback(() => {
         setGameOver(true);
@@ -90,7 +104,9 @@ const useTicTacToe = (sound) => {
         setStatusColor("#fff");
         setScores(s => ({ ...s, t: s.t + 1 }));
         sound.playDraw();
-    }, [sound]);
+        toast('It\'s a Draw!', { icon: '🤝', style: { borderRadius: '10px', background: '#333', color: '#fff' } });
+        addToMatchHistory('draw', 'Draw');
+    }, [sound, addToMatchHistory]);
 
     const makeMove = useCallback((idx, player) => {
         setCells(prev => {
@@ -102,16 +118,6 @@ const useTicTacToe = (sound) => {
 
         if (player === 'X') sound.playMoveX();
         else sound.playMoveO();
-
-        // Check win logic needs latest state, but we are inside callback.
-        // We can check using the new board state derived here.
-        // However, to keep it clean, we'll use a helper or effect.
-        // Actually, let's do it synchronously here to update state immediately.
-
-        // We need to know the new board state.
-        // Since setCells is async, we reconstruct it.
-        // Wait, we can't access 'cells' here reliably if we use functional update.
-        // Let's rely on a separate effect or just pass the new board to checkWin.
     }, [sound]);
 
     // Effect to check win after cells change
@@ -195,16 +201,6 @@ const useTicTacToe = (sound) => {
         sound.playClick();
         setHuman(side);
         setAi(side === 'X' ? 'O' : 'X');
-        // Reset game will be triggered by effect or we call it manually?
-        // Better call it manually to ensure clean slate.
-        // But we need to wait for state update? 
-        // Actually, resetGame depends on 'human' state.
-        // We can just reset cells and let the effect handle the first move if AI is X.
-        // But resetGame uses the *current* human value.
-        // So we should pass the new side to resetGame or use an effect.
-        // Let's just set the state and let a useEffect trigger reset?
-        // No, that might cause loops.
-        // Let's just update everything manually here.
         setCells(Array(9).fill(''));
         setGameOver(false);
         setWinData(null);
@@ -238,7 +234,8 @@ const useTicTacToe = (sound) => {
         resetGame,
         undo,
         setSide,
-        setScores
+        setScores,
+        matchHistory // Export this
     };
 };
 
