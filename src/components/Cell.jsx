@@ -39,13 +39,13 @@ const Cell = ({ value, onClick, disabled, isWin }) => {
 
     return (
         <motion.div
-            whileHover={!value && !disabled ? { scale: 1.05, backgroundColor: "rgba(31, 41, 55, 0.8)" } : {}}
+            whileHover={!value && !disabled ? { scale: 1.05, boxShadow: "0 0 20px rgba(59, 130, 246, 0.3)" } : {}}
             whileTap={!value && !disabled ? { scale: 0.95 } : {}}
             className={`
-                w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 flex items-center justify-center rounded-lg transition-colors duration-300
-                shadow-inner border border-white/5 relative overflow-hidden
-                ${value ? 'cursor-default' : 'cursor-pointer bg-gray-800'}
-                ${isWin ? 'bg-green-500/20 shadow-[0_0_20px_rgba(74,222,128,0.2)] border-green-500/30' : 'bg-gray-800'}
+                w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 flex items-center justify-center rounded-2xl transition-all duration-300
+                backdrop-blur-md relative overflow-hidden group border
+                ${value ? 'cursor-default' : 'cursor-pointer hover:bg-blue-500/10'}
+                ${isWin ? 'bg-cyan-500/10 border-cyan-400 shadow-[0_0_40px_rgba(34,211,238,0.3)]' : 'bg-slate-800/30 border-white/10 shadow-lg'}
             `}
             onClick={!disabled ? onClick : undefined}
         >
@@ -53,9 +53,13 @@ const Cell = ({ value, onClick, disabled, isWin }) => {
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="absolute inset-0 bg-green-400/10 blur-xl"
+                    className="absolute inset-0 bg-cyan-400/20 blur-xl animate-pulse"
                 />
             )}
+
+            {/* Grid Glow Effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-transparent via-blue-500/0 to-blue-500/5 group-hover:to-blue-500/10 transition-all"></div>
+
             {value && getSVG(value)}
         </motion.div>
     );
