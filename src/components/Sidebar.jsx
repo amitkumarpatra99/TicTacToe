@@ -31,7 +31,7 @@ const Sidebar = ({
                 onClick={onNewGame}
             >
                 <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 skew-x-12"></div>
-                Initialize New Round
+                 New Round
             </button>
 
             {/* Controls Stack */}

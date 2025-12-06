@@ -18,7 +18,7 @@ const Navbar = (props) => {
         {
             name: 'Developer',
             icon: <FaCode className="text-xl" />,
-            url: 'https://github.com/amitkumarpatra99',
+            url: 'https://mrpatra.vercel.app/',
             color: 'hover:text-cyan-300'
         }
     ];
@@ -28,7 +28,7 @@ const Navbar = (props) => {
             <motion.div
                 initial={{ y: -50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                className="bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-2xl px-6 py-3 shadow-2xl shadow-blue-900/20 w-full max-w-5xl flex items-center justify-between"
+                className="bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-full px-6 py-3 shadow-2xl shadow-blue-900/20 w-full max-w-5xl flex items-center justify-between"
             >
                 {/* Logo */}
                 <div className="flex items-center gap-2">
@@ -52,7 +52,7 @@ const Navbar = (props) => {
                     <div className="w-px h-5 bg-white/10"></div>
 
                     <a
-                        href="https://github.com/amitkumarpatra99"
+                        href="https://mrpatra.vercel.app/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 text-sm font-bold text-cyan-400 hover:text-cyan-300 transition-all hover:scale-105 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] px-3 py-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/20"
