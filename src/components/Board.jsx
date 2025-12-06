@@ -3,7 +3,7 @@ import Cell from './Cell';
 
 const Board = ({ cells, onCellClick, winData }) => {
     return (
-        <div className="grid grid-cols-3 gap-3 bg-slate-900/10 backdrop-blur-md p-4 rounded-2xl border border-white/10 shadow-inner" id="board">
+        <div className="grid grid-cols-3 gap-3 bg-black/40 backdrop-blur-md p-4 rounded-2xl border border-white/10 shadow-inner" id="board">
             {cells.map((cell, i) => (
                 <Cell
                     key={i}
