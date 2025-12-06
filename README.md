@@ -1,16 +1,89 @@
-# React + Vite
+# ⚡ TIC BOX
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<div align="center">
+  <h3>A Futuristic, AI-Powered Tic Tac Toe Experience</h3>
+  <p>Engineered with React, Tailwind CSS, and Framer Motion.</p>
 
-Currently, two official plugins are available:
+  <p align="center">
+    <a href="#features">Features</a> •
+    <a href="#tech-stack">Tech Stack</a> •
+    <a href="#getting-started">Getting Started</a> •
+    <a href="#license">License</a>
+  </p>
+</div>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🌌 Overview
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**TIC BOX** is not just another game. It's a reimaging of the classic Tic Tac Toe, wrapped in a premium **Blue Cyber** aesthetic. Featuring a glassmorphism UI, fluid animations, and a tactical AI opponent, TIC BOX delivers a modern and immersive gaming experience on any device.
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+*   **Cyber Aesthetic**: Deep blue themes, neon glow effects, and glassmorphism interface.
+*   **Smart AI**: Challenge an adaptive AI with multiple difficulty levels (Training, Tactical, Unbeatable).
+*   **Responsive Control**: "Command Center" layout that adapts perfectly from desktop to mobile.
+*   **Immersive Audio**: Satisfying sound effects for moves and victories (toggleable).
+*   **Match History**: Real-time log of your battles and outcomes.
+*   **Score Tracking**: Persistent scoreboard to track your domination.
+*   **Fluid Animations**: Powered by `framer-motion` for smooth interactions.
+
+## 🛠 Tech Stack
+
+*   **Frontend**: React (Vite)
+*   **Styling**: Tailwind CSS
+*   **Animations**: Framer Motion
+*   **Icons**: React Icons
+*   **Notifications**: React Hot Toast
+
+## 🚀 Getting Started
+
+Clone the repository and jump into the grid.
+
+### Prerequisites
+
+*   Node.js (v16+)
+*   npm or yarn
+
+### Installation
+
+1.  **Clone the repo**
+    ```bash
+    git clone https://github.com/yourusername/tic-box.git
+    cd tic-box
+    ```
+
+2.  **Install dependencies**
+    ```bash
+    npm install
+    ```
+
+3.  **Start the dev server**
+    ```bash
+    npm run dev
+    ```
+
+4.  **Build for production**
+    ```bash
+    npm run build
+    ```
+
+## 🎨 Design Philosophy
+
+TIC BOX follows a **"Command Center"** design language:
+*   **Data Stream (Left)**: Live feed of scores and history.
+*   **Battle Ground (Center)**: The main game board with high-contrast neon markers.
+*   **Control Panel (Right)**: Settings and toggles for full game customization.
+
+## 📱 Mobile Experience
+
+The interface transforms on smaller screens:
+*   **Collapsed Controls**: Access all settings via the refined mobile menu.
+*   **Optimized Touch Targets**: Large, responsive cells for effortless play.
+*   **Vertical Flow**: Seamless stacking of game elements.
+
+---
+
+<div align="center">
+  <p>Built with 💙 by <a href="https://mrpatra.vercel.app/" target="_blank">Amit Kumar Patra</a></p>
+</div>
