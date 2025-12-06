@@ -25,14 +25,7 @@ const Sidebar = ({
                 Command Panel
             </h2>
 
-            <button
-                className="w-full py-4 px-6 rounded-xl font-black text-white uppercase tracking-wider shadow-lg bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 active:scale-[0.98] transition-all duration-300 relative overflow-hidden group border border-blue-400/30 shadow-blue-500/20"
-                id="newGame"
-                onClick={onNewGame}
-            >
-                <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 skew-x-12"></div>
-                 New Round
-            </button>
+
 
             {/* Controls Stack */}
             <div className="flex flex-col gap-5 relative z-10">
@@ -100,37 +93,50 @@ const Sidebar = ({
                         />
                     </div>
                 </div>
+
+                <div className="flex flex-col gap-2">
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">System Operations</span>
+                    <div className="grid grid-cols-2 gap-3">
+                        <button
+                            className={`h-[54px] rounded-xl font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 border ${soundEnabled
+                                ? 'bg-green-500/10 text-green-400 border-green-500/20 hover:bg-green-500/20 shadow-[0_0_15px_rgba(34,197,94,0.1)]'
+                                : 'bg-slate-950/40 text-slate-500 border-white/5 hover:text-slate-300'
+                                }`}
+                            onClick={toggleSound}
+                        >
+                            {soundEnabled ? (
+                                <>
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+                                    <span>ON</span>
+                                </>
+                            ) : (
+                                <>
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" /></svg>
+                                    <span>OFF</span>
+                                </>
+                            )}
+                        </button>
+
+                        <button
+                            className="h-[54px] rounded-xl font-bold text-sm text-red-400 bg-red-500/10 border border-red-500/20 hover:bg-red-500/20 hover:shadow-[0_0_15px_rgba(239,68,68,0.1)] transition-all duration-300 flex items-center justify-center gap-2"
+                            onClick={onResetScores}
+                        >
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                            Purge Data
+                        </button>
+                    </div>
+                </div>
+
+                {/* Decorative Status Indicator */}
+                <div className="mt-auto border-t border-white/5 pt-4 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]"></div>
+                        <span className="text-[10px] font-bold text-green-500/80 tracking-widest uppercase">System Online</span>
+                    </div>
+                    <div className="text-[10px] font-mono text-slate-600">v2.4.0</div>
+                </div>
+
             </div>
-
-            <div className="mt-auto grid grid-cols-2 gap-3 relative z-10">
-                <button
-                    className="py-3 px-4 rounded-xl font-bold text-slate-400 bg-slate-800/40 hover:bg-slate-700/60 hover:text-white transition-all border border-white/5 hover:border-white/10 shadow-lg hover:shadow-xl active:scale-95"
-                    id="undoBtn"
-                    onClick={onUndo}
-                >
-                    Undo
-                </button>
-                <button
-                    className="py-3 px-4 rounded-xl font-bold text-slate-400 bg-slate-800/40 hover:bg-slate-700/60 hover:text-white transition-all border border-white/5 hover:border-white/10 shadow-lg hover:shadow-xl active:scale-95"
-                    id="resetScore"
-                    onClick={onResetScores}
-                >
-                    Reset
-                </button>
-            </div>
-
-            <button
-                className="absolute top-6 right-6 p-2 rounded-full text-slate-500 hover:text-white hover:bg-white/10 transition-all z-20"
-                id="soundBtn"
-                title="Toggle Sound"
-                onClick={toggleSound}
-                style={{ opacity: soundEnabled ? 1 : 0.5 }}
-            >
-                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zm-4 0h-2.5l-5 5H2v6h2.5l5 5V3.23zm2.5 0v17.54l-5-5H6.5V8.23h2.5l5-5z" />
-                </svg>
-            </button>
-
         </aside>
     );
 };

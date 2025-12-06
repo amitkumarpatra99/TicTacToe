@@ -102,6 +102,25 @@ const Game = ({ game, soundEnabled, toggleSound, playerName, setPlayerName }) =>
                             winData={game.winData}
                         />
                     </div>
+
+                    {/* Game Controls: Undo & Reset */}
+                    <div className="flex gap-4 w-full max-w-[450px] sm:max-w-[500px]">
+                        <button
+                            className="flex-1 py-3 px-4 rounded-xl font-bold text-slate-400 bg-slate-900/40 hover:bg-slate-800/60 hover:text-white transition-all border border-white/10 hover:border-white/20 shadow-lg hover:shadow-xl active:scale-95 flex items-center justify-center gap-2 group backdrop-blur-md"
+                            onClick={game.undo}
+                            disabled={!game.isHumanTurn && !game.gameOver}
+                        >
+                            <svg className="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"></path></svg>
+                            Undo
+                        </button>
+                        <button
+                            className="flex-1 py-3 px-4 rounded-xl font-bold text-slate-400 bg-slate-900/40 hover:bg-slate-800/60 hover:text-white transition-all border border-white/10 hover:border-white/20 shadow-lg hover:shadow-xl active:scale-95 flex items-center justify-center gap-2 group backdrop-blur-md"
+                            onClick={game.resetGame}
+                        >
+                            <svg className="w-5 h-5 group-hover:rotate-180 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                            New Round
+                        </button>
+                    </div>
                 </motion.div>
 
                 {/* Right Panel: Controls (Desktop Only) */}
