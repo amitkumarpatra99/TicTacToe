@@ -44,7 +44,7 @@ const Game = ({ game, soundEnabled, toggleSound, playerName, setPlayerName }) =>
                     animate={{ y: 0, opacity: 1 }}
                     className="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-white/20 tracking-tighter drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] text-center font-sans"
                 >
-                    TIC <span className="text-blue-500"> TAC </span>TOE
+                    TIC <span className="text-blue-500"> BOX </span>
                 </motion.h1>
 
                 <motion.div

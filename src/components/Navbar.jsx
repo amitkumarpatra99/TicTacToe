@@ -33,7 +33,7 @@ const Navbar = (props) => {
                 {/* Logo */}
                 <div className="flex items-center gap-2">
                     <span className="text-xl font-black tracking-tight bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent cursor-pointer hover:scale-105 transition-transform">
-                        Tic Tac Toe
+                        TIC BOX
                     </span>
                 </div>
 
