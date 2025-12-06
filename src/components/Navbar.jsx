@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaCode, FaBars, FaTimes } from 'react-icons/fa';
+import Sidebar from './Sidebar';
 
-const Navbar = () => {
+const Navbar = (props) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -78,7 +79,7 @@ const Navbar = () => {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: -20, scale: 0.95 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute top-20 left-4 right-4 bg-slate-900/90 backdrop-blur-2xl border border-white/10 rounded-2xl p-4 shadow-2xl flex flex-col gap-2 sm:hidden overflow-hidden"
+                        className="absolute top-20 left-4 right-4 bg-slate-900/90 backdrop-blur-2xl border border-white/10 rounded-2xl p-4 shadow-2xl flex flex-col gap-2 sm:hidden overflow-y-auto max-h-[85vh]"
                     >
                         {navLinks.map((link) => (
                             <a
@@ -93,6 +94,27 @@ const Navbar = () => {
                                 <span className="font-bold">{link.name}</span>
                             </a>
                         ))}
+
+                        <div className="w-full h-px bg-white/10 my-1"></div>
+
+                        {/* Integrated Controls for Mobile */}
+                        <div className="pb-4">
+                            <Sidebar
+                                onNewGame={() => { if (props.game) props.game.resetGame(); setIsMobileMenuOpen(false); }}
+                                onUndo={props.game?.undo}
+                                onResetScores={() => props.game?.setScores({ h: 0, a: 0, t: 0 })}
+                                difficulty={props.game?.difficulty}
+                                setDifficulty={props.game?.setDifficulty}
+                                aiSpeed={props.game?.aiSpeed}
+                                setAiSpeed={props.game?.setAiSpeed}
+                                humanSide={props.game?.human}
+                                setSide={props.game?.setSide}
+                                soundEnabled={props.soundEnabled}
+                                toggleSound={props.toggleSound}
+                                playerName={props.playerName}
+                                setPlayerName={props.setPlayerName}
+                            />
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>
