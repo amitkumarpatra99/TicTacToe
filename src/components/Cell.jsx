@@ -39,13 +39,13 @@ const Cell = ({ value, onClick, disabled, isWin }) => {
 
     return (
         <motion.div
-            whileHover={!value && !disabled ? { scale: 1.05, boxShadow: "0 0 20px rgba(59, 130, 246, 0.3)" } : {}}
+            whileHover={!value && !disabled ? { scale: 1.05, boxShadow: "0 0 25px rgba(59, 130, 246, 0.4)" } : {}}
             whileTap={!value && !disabled ? { scale: 0.95 } : {}}
             className={`
                 w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 flex items-center justify-center rounded-2xl transition-all duration-300
                 backdrop-blur-md relative overflow-hidden group border
                 ${value ? 'cursor-default' : 'cursor-pointer hover:bg-blue-500/10'}
-                ${isWin ? 'bg-cyan-500/10 border-cyan-400 shadow-[0_0_40px_rgba(34,211,238,0.3)]' : 'bg-slate-800/30 border-white/10 shadow-lg'}
+                ${isWin ? 'bg-cyan-500/10 border-cyan-400 shadow-[0_0_40px_rgba(34,211,238,0.3)]' : 'bg-slate-900/40 border-white/10 shadow-lg hover:border-blue-400/50'}
             `}
             onClick={!disabled ? onClick : undefined}
         >
@@ -57,10 +57,22 @@ const Cell = ({ value, onClick, disabled, isWin }) => {
                 />
             )}
 
-            {/* Grid Glow Effect */}
-            <div className="absolute inset-0 bg-gradient-to-br from-transparent via-blue-500/0 to-blue-500/5 group-hover:to-blue-500/10 transition-all"></div>
+            {/* Tech Grid Background Effect */}
+            <div className="absolute inset-0 opacity-10 pointer-events-none"
+                style={{
+                    backgroundImage: 'linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, .1) 25%, rgba(255, 255, 255, .1) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .1) 75%, rgba(255, 255, 255, .1) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, .1) 25%, rgba(255, 255, 255, .1) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .1) 75%, rgba(255, 255, 255, .1) 76%, transparent 77%, transparent)',
+                    backgroundSize: '30px 30px'
+                }}
+            ></div>
 
-            {value && getSVG(value)}
+            {/* Glowing Center */}
+            {!value && !disabled && (
+                <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/0 via-blue-400/0 to-cyan-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            )}
+
+            <div className="relative z-10">
+                {value && getSVG(value)}
+            </div>
         </motion.div>
     );
 };
